@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEditor.Experimental.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -33,8 +32,8 @@ public class GuidComponent : MonoBehaviour, ISerializationCallbackReceiver
 #if UNITY_EDITOR
             // If we are creating a new GUID for a prefab instance of a prefab, but we have somehow lost our prefab connection
             // force a save of the modified prefab instance properties
-            PrefabType prefabType = PrefabUtility.GetPrefabType(this);
-            if (prefabType == PrefabType.PrefabInstance)
+            PrefabInstanceStatus prefabType = PrefabUtility.GetPrefabInstanceStatus(this);
+            if (prefabType != PrefabInstanceStatus.NotAPrefab)
             {
                 PrefabUtility.RecordPrefabInstancePropertyModifications(this);
             }
@@ -44,7 +43,7 @@ public class GuidComponent : MonoBehaviour, ISerializationCallbackReceiver
         {
             // otherwise, we should set our system guid to our serialized guid
             guid = new System.Guid(serializedGuid);
-        }
+        }        
 
         // register with the GUID Manager so that other components can access this
         if (guid != System.Guid.Empty)
@@ -63,11 +62,9 @@ public class GuidComponent : MonoBehaviour, ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
 #if UNITY_EDITOR
-        // This lets us detect if we are a prefab instance or a prefab asset.
-        // A prefab asset cannot contain a GUID since it would then be duplicated when instanced.
-        PrefabType prefabType = PrefabUtility.GetPrefabType(this);
-        if (prefabType == PrefabType.Prefab || prefabType == PrefabType.ModelPrefab)
-        {
+    // This lets us detect if we are a prefab instance or a prefab asset.
+    // A prefab asset cannot contain a GUID since it would then be duplicated when instanced.
+        if (PrefabStageUtility.GetPrefabStage(gameObject) != null) { 
             serializedGuid = new byte[0];
             guid = System.Guid.Empty;
         }
@@ -97,12 +94,11 @@ public class GuidComponent : MonoBehaviour, ISerializationCallbackReceiver
 
     void OnValidate()
     {
+        if (Application.isPlaying) return;
 #if UNITY_EDITOR
         // similar to on Serialize, but gets called on Copying a Component or Applying a Prefab
         // at a time that lets us detect what we are
-        PrefabType prefabType = PrefabUtility.GetPrefabType(this);
-        if (prefabType == PrefabType.Prefab || prefabType == PrefabType.ModelPrefab)
-        {
+        if (PrefabStageUtility.GetPrefabStage(gameObject) != null) {
             serializedGuid = null;
             guid = System.Guid.Empty;
         }

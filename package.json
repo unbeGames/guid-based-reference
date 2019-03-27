@@ -1,0 +1,9 @@
+{
+	"name": "com.unity.guid_based_reference",
+	"displayName": "Guid Based Reference",
+	"version": "0.1.0",
+	"unity": "2018.2",
+	"description": "The major limitation of Unity resolved",
+	"keywords": ["asset", "reference", "scenes"],
+	"category": ""	
+}

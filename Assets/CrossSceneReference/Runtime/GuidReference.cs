@@ -58,6 +58,10 @@ public class GuidReference : ISerializationCallbackReceiver
         private set {}
     }
 
+    public T FetchComponent<T>(){
+        return gameObject.GetComponent<T>();
+    }
+
     public GuidReference() { }
 
     public GuidReference(GuidComponent target)

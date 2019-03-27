@@ -1,0 +1,12 @@
+{
+    "name": "Unity.GuidReference.Editor",
+    "references": [
+        "Unity.GuidReference"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
