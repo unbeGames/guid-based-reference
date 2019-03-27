@@ -1,25 +1,14 @@
-Guid Based Reference
+## Guid Based Reference
+A component for giving Game Objects a GUID and a class to create references to objects in any Scene by GUID.
 
-License - Please see LICENSE.md in this repository
-
-Summary
-A component to give a Globaly Unique IDentifier (GUID) to a Game Object.
+### Summary
 This GUID can then be used to reference an object even if it is another Scene, not loaded yet, or otherwise not easy to directly reference.
 
-Maintainers
-William Armstrong williama@unity3d.com
+### How to Use:
+* Clone repository to the folder on local machine
+* Go to Pacakage Manager -> Add Package From Disk -> select the folder
+* Add a GuidComponent to any object you want to be able to reference.
+* In any code that needs to be able to reference objects by GUID, add a GuidReference field.
+* GuidReference.gameObject will then return the GameObject if it is loaded, otherwise null.
 
-To Use:
-
-Add a GuidComponent to any object you want to be able to reference.
-
-In any code that needs to be able to reference objects by GUID, add a GuidReference field.
-
-GuidReference.gameObject will then return the GameObject if it is loaded, otherwise null.
-
-Look in the CrossSceneReference/SampleContent folder for example usage.
-
-Load up the LoadFirst scene, and then use the SceneLoader object to load 'LoadSecond'
-
-You should see the CrossSceneReferencer object find the CrossSceneTarget object, and set both of them to start spinning.
-
+License - Please see LICENSE.md in this repository
