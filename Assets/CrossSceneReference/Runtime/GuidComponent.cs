@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using UnityEditor.Experimental.SceneManagement;
 
 #if UNITY_EDITOR
+using UnityEditor.Experimental.SceneManagement;
 using UnityEditor;
 #endif
 
