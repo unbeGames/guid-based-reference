@@ -1,9 +1,18 @@
 {
-	"name": "com.unity.guid_based_reference",
-	"displayName": "Guid Based Reference",
-	"version": "0.1.1",
-	"unity": "2018.2",
-	"description": "The major limitation of Unity resolved",
-	"keywords": ["asset", "reference", "scenes"],
-	"category": ""	
+   "name":"com.unbegames.guid_based_reference",
+   "displayName":"Guid Based Reference",
+   "version":"0.1.1",
+   "unity":"2018.2",
+   "description":"The major limitation of Unity resolved",
+   "keywords":[
+      "asset",
+      "reference",
+      "scenes"
+   ],
+   "category":"library",
+   "author":{
+      "name":"unbeGames",
+      "email":"arugin@unbegames.com",
+      "url":"https://store.steampowered.com/publisher/unbegames"
+   }
 }
